@@ -32,6 +32,10 @@
                     </f:content> 
                 </f:SimpleForm> 
 
+                <!--Shopping Cart Fragment-->
+                <core:Fragment fragmentName="com.training.exer5mendoza.fragment.ShoppingCart" type="XML" />
+
+                <!--
                 <Table id="idTableSCart" inset="false"> 
                     <headerToolbar> 
                         <OverflowToolbar id="idOFT"> 
@@ -70,7 +74,7 @@
                         </ColumnListItem> 
                     </items> 
                 </Table> 
-
+                -->
             </VBox> 
         </content>
 
