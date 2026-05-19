@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
-], (Controller, MessageToast) => {
+    "sap/m/MessageToast",
+    "sap/m/MessageBox"
+], (Controller, MessageToast, MessageBox) => {
     "use strict";
 
     return Controller.extend("com.training.exer5mendoza.controller.MainView", {
@@ -67,14 +68,69 @@ sap.ui.define([
             if (oInputFNameValue === "" && oInputLNameValue === "" ){ 
                 sap.m.MessageToast.show("First and Last Names are blank");  
             }
+        
+        },*/
 
-        },
+        onPressCheckout: function (){ 
+
+            var oInputFName = this.getView().byId("idInptFName"); 
+            var oInputLName = this.getView().byId("idInptLName"); 
+
+            var oInputFNameValue = oInputFName.getValue(); 
+            var oInputLNameValue = oInputLName.getValue(); 
+
+            var oRouter = this.getOwnerComponent().getRouter(); 
+
+            MessageBox.alert("Checkout button pressed", { styleClass: "customMessageBox",
+                onClose: function() {
+                    // Check if first name and last name is blank 
+                    if (oInputFNameValue === "" || oInputLNameValue === ""){ 
+                        // set value state to Error 
+                        oInputFName.setValueState("Error"); 
+                        oInputLName.setValueState("Error"); 
+                    } else { 
+                        oInputFName.setValueState("None"); 
+                        oInputLName.setValueState("None"); 
+
+                        //Navigate to review page passing first 
+                        oRouter.navTo("RouteReviewPage", { firstName: oInputFNameValue }); 
+                    } 
+                }
+            });
+            
+        }, 
 
         onAddItem: function (){ 
-                var oTextBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle(); 
-                var sMsg = oTextBundle.getText("addButtonMsg"); 
-                this.fnDisplayMsg(sMsg); 
-            } 
+                // Comment this code for now 
+                // var oTextBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle(); 
+                // var sMsg = oTextBundle.getText("addButtonMsg"); 
+                // this.fnDisplayMsg(sMsg);     
+
+                /*---------------------------Fragments and Routers part--------------------------*/   
+                // Instantiate the fragment
+                // create dialog lazily 
+
+                if (!this.oDialog) { 
+
+                    // By using loadFragment, we are adding the fragment as a dependent to the View 
+                    // By doing so, we can use the functions inside the view's controller 
+                    this.oDialog = this.loadFragment({ 
+                        name: "com.training.exer5mendoza.fragment.ProductDialog" 
+                    }); 
+                }  
+                    this.oDialog.then(function(oDialog) { 
+                    oDialog.open(); 
+                }); 
+
+        },
+        
+        onCloseDialog: function (){ 
+            this.getView().byId("idProductDialog").close(); 
+        }, 
+
+        onPressSave: function (){
+            MessageBox.alert("Save button pressed", { styleClass: "customMessageBox" });
+        }
 
     });
 });

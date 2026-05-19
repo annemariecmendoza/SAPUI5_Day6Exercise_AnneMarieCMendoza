@@ -1,1 +1,23 @@
 /* Enter your custom styles here */
+
+/*create custom anchor and define hierarchy from sapM standard styles*/
+
+/*Page Header Title*/
+.customPage .sapMPageHeader .sapMTitle{
+    color: lightseagreen !important; /* Green */
+}
+
+/*Page Floating Footer*/
+.customPage .sapMIBar-CTX.sapMFooter-CTX {
+    background-color: lightseagreen !important; /* Light seagreen */ 
+}
+
+/*Message Box Background*/
+.customMessageBox .sapMDialogTitleGroup .sapMIBar {
+    background-color: lightseagreen !important; /* Light seagreen */
+}
+
+/*Message Box Title Color*/
+.customMessageBox .sapMDialogTitle {
+    color: white !important; /* White text */
+}

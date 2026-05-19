@@ -4,6 +4,7 @@
     xmlns:f="sap.ui.layout.form" 
     xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}"
+            class="customPage"
             floatingFooter="true"> <!--add floating footer-->
         <!--add content inside the Page aggregation-->
         <content>
@@ -76,9 +77,10 @@
 
         <!--Add footer outside the content-->
         <footer> 
-            <OverflowToolbar id="idOFTFooter"> 
+            <OverflowToolbar id="idOFTFooter" class="customFooter"> 
                 <ToolbarSpacer id="idTSpacerFooter"/> 
-                <Button id="idBtnCheckout" text="{i18n>checkoutTxt}" tooltip="Check Out" press="onPressCheckout"/> 
+                <Button type="Emphasized" id="idBtnSave" text="{i18n>saveTxt}" tooltip="Save" press="onPressSave"/> 
+                <Button type="Emphasized" id="idBtnCheckout" text="{i18n>checkoutTxt}" tooltip="Check Out" press="onPressCheckout"/> 
             </OverflowToolbar> 
         </footer> 
 
